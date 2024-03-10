@@ -32,7 +32,6 @@
         let wallet = {};
         let materials = {};
         let bankItems = {};
-        let characterInventories = [];
     
         async function fetchWalletInfo() {
             const apiKey = document.getElementById("api-token").value;
@@ -42,13 +41,6 @@
             materials = await materialsResponse.json();
             const bankResponse = await fetch(`https://api.guildwars2.com/v2/account/bank?access_token=${apiKey}`);
             bankItems = await bankResponse.json();
-            const charactersResponse = await fetch(`https://api.guildwars2.com/v2/characters?access_token=${apiKey}`);
-            const characters = await charactersResponse.json();
-            for (const characterName of characters) {
-                const inventoryResponse = await fetch(`https://api.guildwars2.com/v2/characters/${encodeURIComponent(characterName)}/inventory?access_token=${apiKey}`);
-                const inventoryData = await inventoryResponse.json();
-                characterInventories.push(...inventoryData.bags.flatMap(bag => bag ? bag.inventory : []));
-            }
     
             loadItems();
         }
@@ -101,8 +93,7 @@
                         const walletEntry = wallet.find(w => w.id === currencyInfo.id);
                         const materialEntry = materials.find(m => m.id === currencyInfo.id);
                         const bankCount = bankItems.filter(i => i && i.id === currencyInfo.id).reduce((acc, i) => acc + i.count, 0);
-                        const characterCount = characterInventories.filter(i => i && i.id === currencyInfo.id).reduce((acc, i) => acc + i.count, 0);
-                        const totalAmount = (walletEntry ? walletEntry.value : 0) + (materialEntry ? materialEntry.count : 0) + bankCount + characterCount;
+                        const totalAmount = (walletEntry ? walletEntry.value : 0) + (materialEntry ? materialEntry.count : 0) + bankCount;
                         walletAmount += `${totalAmount} ${currency}<br>`;
                         if (totalAmount < amount) {
                             canAfford = false;
@@ -161,8 +152,7 @@
                             const walletEntry = wallet.find(w => w.id === currencyInfo.id);
                             const materialEntry = materials.find(m => m.id === currencyInfo.id);
                             const bankCount = bankItems.filter(i => i && i.id === currencyInfo.id).reduce((acc, i) => acc + i.count, 0);
-                            const characterCount = characterInventories.filter(i => i && i.id === currencyInfo.id).reduce((acc, i) => acc + i.count, 0);
-                            const totalAmount = (walletEntry ? walletEntry.value : 0) + (materialEntry ? materialEntry.count : 0) + bankCount + characterCount;
+                            const totalAmount = (walletEntry ? walletEntry.value : 0) + (materialEntry ? materialEntry.count : 0) + bankCount;
                             walletAmount += `${totalAmount} ${currency}<br>`;
                         }
                     }
