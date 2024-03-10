@@ -1,112 +1,169 @@
-<script>
-    let wallet = {};
-    let inventory = {};
-
-    async function fetchWalletInfo() {
-        const apiKey = document.getElementById("api-token").value;
-        const walletResponse = await fetch(`https://api.guildwars2.com/v2/account/wallet?access_token=${apiKey}`);
-        wallet = await walletResponse.json();
-        const inventoryResponse = await fetch(`https://api.guildwars2.com/v2/account/inventory?access_token=${apiKey}`);
-        inventory = await inventoryResponse.json();
-
-        loadItems();
-    }
-
-    async function loadItems() {
-        const response = await fetch("items.json");
-        const data = await response.json();
-
-        let tableHtml = `
-            <table>
-                <tr>
-                    <th>Item</th>
-                    <th>Type</th>
-                    <th>Cost</th>
-                    <th>Wallet</th>
-                    <th>Wiki Link</th>
-                </tr>
-        `;
-
-        let selectedItems = {
-            'Ring': [],
-            'Accessory': [],
-            'Amulet': []
-        };
-
-        // Collect all item IDs
-        const itemIds = data.items.map(item => item.id).filter(id => id !== undefined);
-
-        // Fetch item details in batches
-        const batchSize = 200; // API limit
-        const itemDetails = {};
-        for (let i = 0; i < itemIds.length; i += batchSize) {
-            const batchIds = itemIds.slice(i, i + batchSize);
-            const batchResponse = await fetch(`https://api.guildwars2.com/v2/items?ids=${batchIds.join(',')}`);
-            const batchData = await batchResponse.json();
-            batchData.forEach(item => {
-                itemDetails[item.id] = item;
-            });
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GW2 Ascended Trinkets Tracker</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
         }
 
-        for (const item of data.items) {
-            let costString = '';
-            let walletAmount = '';
-            let canAfford = true;
-            let affordability = 0;
-            for (const [currency, amount] of Object.entries(item.cost)) {
-                const currencyInfo = data.currencies.find(c => c.name === currency) || data.inventoryItems.find(c => c.name === currency);
-                if (currencyInfo) {
-                    costString += `${amount} ${currency}<br>`;
-                    const walletEntry = wallet.find(w => w.id === currencyInfo.id) || inventory.find(w => w.id === currencyInfo.id);
-                    walletAmount += `${walletEntry ? walletEntry.value : 0} ${currency}<br>`;
-                    if (!walletEntry || walletEntry.value < amount) {
-                        canAfford = false;
-                        affordability += walletEntry ? walletEntry.value / amount : 0;
-                    }
-                }
-            }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
 
-            const itemDetail = itemDetails[item.id];
-            const iconUrl = itemDetail ? itemDetail.icon : '';
-            const wikiUrl = `https://wiki.guildwars2.com/wiki/Special:Search?search=${encodeURIComponent(item.name)}`;
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <label for="api-token">Enter your API token:</label>
+    <input type="text" id="api-token" name="api-token">
+    <button onclick="fetchWalletInfo()">Load Wallet Info</button>
 
-            tableHtml += `
-                <tr>
-                    <td><img src="${iconUrl}" alt="${item.name} icon" width="32" height="32"> ${item.name}</td>
-                    <td>${item.type}</td>
-                    <td>${costString}</td>
-                    <td>${walletAmount}</td>
-                    <td><a href="${wikiUrl}" target="_blank">Wiki</a></td>
-                </tr>
+    <div id="items-table"></div>
+    <h2>Recommended Items</h2>
+    <div id="recommended-items-table"></div> 
+    <script>
+        let wallet = {};
+
+        async function fetchWalletInfo() {
+            const apiKey = document.getElementById("api-token").value;
+            const response = await fetch(`https://api.guildwars2.com/v2/account/wallet?access_token=${apiKey}`);
+            wallet = await response.json();
+
+            loadItems();
+        }
+
+
+
+        async function loadItems() {
+            const response = await fetch("items.json");
+            const data = await response.json();
+        
+            let tableHtml = `
+                <table>
+                    <tr>
+                        <th>Item</th>
+                        <th>Type</th>
+                        <th>Cost</th>
+                        <th>Wallet</th>
+                        <th>Wiki Link</th>
+                    </tr>
             `;
-
-            if (selectedItems[item.type].length < (item.type === 'Amulet' ? 1 : 2) && 
-                (canAfford || selectedItems[item.type].length === 0 || 
-                affordability > selectedItems[item.type][0].affordability)) {
-                if (selectedItems[item.type].length === (item.type === 'Amulet' ? 1 : 2)) {
-                    selectedItems[item.type].shift();
-                }
-                selectedItems[item.type].push({ ...item, affordability, iconUrl, wikiUrl });
+        
+            let selectedItems = {
+                'Ring': [],
+                'Accessory': [],
+                'Amulet': []
+            };
+        
+            // Collect all item IDs
+            const itemIds = data.items.map(item => item.id).filter(id => id !== undefined);
+        
+            // Fetch item details in batches
+            const batchSize = 200; // API limit
+            const itemDetails = {};
+            for (let i = 0; i < itemIds.length; i += batchSize) {
+                const batchIds = itemIds.slice(i, i + batchSize);
+                const batchResponse = await fetch(`https://api.guildwars2.com/v2/items?ids=${batchIds.join(',')}`);
+                const batchData = await batchResponse.json();
+                batchData.forEach(item => {
+                    itemDetails[item.id] = item;
+                });
             }
-        }
-
-        tableHtml += '</table>';
-        document.getElementById("items-table").innerHTML = tableHtml;
-
-        // Create the second table for recommended items
-        let recommendedTableHtml = `
-            <table>
-                <tr>
-                    <th>Recommended Item</th>
-                    <th>Type</th>
-                    <th>Cost</th>
-                    <th>Wallet</th>
-                    <th>Wiki Link</th>
-                </tr>
-        `;
-
-        for (const type in selectedItems) {
-            for (const item of selectedItems[type]) {
+        
+            for (const item of data.items) {
                 let costString = '';
                 let walletAmount = '';
-                for (const [currency, amount] of Object.entries
+                let canAfford = true;
+                let affordability = 0;
+                for (const [currency, amount] of Object.entries(item.cost)) {
+                    const currencyInfo = data.currencies.find(c => c.name === currency);
+                    if (currencyInfo) {
+                        costString += `${amount} ${currency}<br>`;
+                        const walletEntry = wallet.find(w => w.id === currencyInfo.id);
+                        walletAmount += `${walletEntry ? walletEntry.value : 0} ${currency}<br>`;
+                        if (!walletEntry || walletEntry.value < amount) {
+                            canAfford = false;
+                            affordability += walletEntry ? walletEntry.value / amount : 0;
+                        }
+                    }
+                }
+        
+                const itemDetail = itemDetails[item.id];
+                const iconUrl = itemDetail ? itemDetail.icon : '';
+                const wikiUrl = `https://wiki.guildwars2.com/wiki/Special:Search?search=${encodeURIComponent(item.name)}`;
+        
+                tableHtml += `
+                    <tr>
+                        <td><img src="${iconUrl}" alt="${item.name} icon" width="32" height="32"> ${item.name}</td>
+                        <td>${item.type}</td>
+                        <td>${costString}</td>
+                        <td>${walletAmount}</td>
+                        <td><a href="${wikiUrl}" target="_blank">Wiki</a></td>
+                    </tr>
+                `;
+        
+                if (selectedItems[item.type].length < (item.type === 'Amulet' ? 1 : 2) && 
+                    (canAfford || selectedItems[item.type].length === 0 || 
+                    affordability > selectedItems[item.type][0].affordability)) {
+                    if (selectedItems[item.type].length === (item.type === 'Amulet' ? 1 : 2)) {
+                        selectedItems[item.type].shift();
+                    }
+                    selectedItems[item.type].push({ ...item, affordability, iconUrl, wikiUrl });
+                }
+            }
+        
+            tableHtml += '</table>';
+            document.getElementById("items-table").innerHTML = tableHtml;
+        
+            // Create the second table for recommended items
+            let recommendedTableHtml = `
+                <table>
+                    <tr>
+                        <th>Recommended Item</th>
+                        <th>Type</th>
+                        <th>Cost</th>
+                        <th>Wallet</th>
+                        <th>Wiki Link</th>
+                    </tr>
+            `;
+        
+            for (const type in selectedItems) {
+                for (const item of selectedItems[type]) {
+                    let costString = '';
+                    let walletAmount = '';
+                    for (const [currency, amount] of Object.entries(item.cost)) {
+                        const currencyInfo = data.currencies.find(c => c.name === currency);
+                        if (currencyInfo) {
+                            costString += `${amount} ${currency}<br>`;
+                            const walletEntry = wallet.find(w => w.id === currencyInfo.id);
+                            walletAmount += `${walletEntry ? walletEntry.value : 0} ${currency}<br>`;
+                        }
+                    }
+        
+                    recommendedTableHtml += `
+                        <tr>
+                            <td><img src="${item.iconUrl}" alt="${item.name} icon" width="32" height="32"> ${item.name}</td>
+                            <td>${item.type}</td>
+                            <td>${costString}</td>
+                            <td>${walletAmount}</td>
+                            <td><a href="${item.wikiUrl}" target="_blank">Wiki</a></td>
+                        </tr>
+                    `;
+                }
+            }
+        
+            recommendedTableHtml += '</table>';
+            document.getElementById("recommended-items-table").innerHTML = recommendedTableHtml;
+        }
+        
+    </script>
+</body>
+</html>
+
