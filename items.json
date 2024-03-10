@@ -1,6 +1,6 @@
 {
     "currencies": [
-        { "name": "Magnetite Shard", "id": 28 },
+        { "name": "magnetite shard", "id": 28 },
         { "name": "Blood Ruby", "id": 79280 },
         { "name": "Unbound Magic", "id": 32 },
         { "name": "Petrified Wood", "id": 79469 },
@@ -16,39 +16,334 @@
         { "name": "Integrated Fractal Matrix", "id": 79230 }
     ],
     "items": [
-        { "name": "Assaulter's Talisman of Manton", "type": "Amulet", "cost": { "Magnetite Shard": 250 }, "id": 77410, "vendor": "Scholar Glenna" },
-        { "name": "Defender's Talisman of Holt", "type": "Amulet", "cost": { "Magnetite Shard": 250 }, "vendor": "Scholar Glenna" },
-        { "name": "Malicious Talisman of Irwyn", "type": "Amulet", "cost": { "Magnetite Shard": 250 }, "vendor": "Scholar Glenna" },
-        { "name": "Healer's Talisman of Garr", "type": "Amulet", "cost": { "Magnetite Shard": 250 }, "id": 77338, "vendor": "Scholar Glenna" },
-        { "name": "Blood Ruby Pendant", "type": "Amulet", "cost": { "Blood Ruby": 125, "Unbound Magic": 3000 }, "id": 79269, "vendor": "Scholar Rakka" },
-        { "name": "Jade Pendant", "type": "Amulet", "cost": { "Jade Shard": 125, "Unbound Magic": 3000 }, "id": 80241, "vendor": "Quartermaster Hitchens" },
-        { "name": "Spectral Talisman", "type": "Accessory", "cost": { "Magnetite Shard": 250 }, "id": 77422, "vendor": "Scholar Glenna" },
-        { "name": "Zane's Assaulter Memento", "type": "Accessory", "cost": { "Magnetite Shard": 250 }, "id": 77939, "vendor": "Scholar Glenna" },
-        { "name": "Assaulter's Pointed Keep Fragment", "type": "Accessory", "cost": { "Magnetite Shard": 250 }, "id": 78829, "vendor": "Scholar Glenna" },
-        { "name": "Spectral Ward", "type": "Accessory", "cost": { "Magnetite Shard": 250 }, "id": 77323, "vendor": "Scholar Glenna" },
-        { "name": "Berg's Defender Token", "type": "Accessory", "cost": { "Magnetite Shard": 250 }, "id": 77988, "vendor": "Scholar Glenna" },
-        { "name": "Defender's Hardened Keep Fragment", "type": "Accessory", "cost": { "Magnetite Shard": 250 }, "id": 78915, "vendor": "Scholar Glenna" },
-        { "name": "Spectral Juju", "type": "Accessory", "cost": { "Magnetite Shard": 250 }, "id": 77413, "vendor": "Scholar Glenna" },
-        { "name": "Narella's Malicious Bauble", "type": "Accessory", "cost": { "Magnetite Shard": 250 }, "id": 77958, "vendor": "Scholar Glenna" },
-        { "name": "Malicious Jagged Keep Fragment", "type": "Accessory", "cost": { "Magnetite Shard": 250 }, "id": 78863, "vendor": "Scholar Glenna" },
-        { "name": "Spectral Balm", "type": "Accessory", "cost": { "Magnetite Shard": 250 }, "id": 77448, "vendor": "Scholar Glenna" },
-        { "name": "Healer's Pact Badge", "type": "Accessory", "cost": { "Magnetite Shard": 250 }, "id": 77986, "vendor": "Scholar Glenna" },
-        { "name": "Healer's Rounded Keep Fragment", "type": "Accessory", "cost": { "Magnetite Shard": 250 }, "id": 78878, "vendor": "Scholar Glenna" },
-        { "name": "Sparking Petrified Wood", "type": "Accessory", "cost": { "Petrified Wood": 150, "Unbound Magic": 4000 }, "id": 79444, "vendor": "Scholar Surra" },
-        { "name": "Black Ice Earring", "type": "Accessory", "cost": { "Fresh Winterberry": 300, "Unbound Magic": 4000 }, "id": 79745, "vendor": "Slooshoo" },
-        { "name": "Assaulter's Energized Loop", "type": "Ring", "cost": { "Magnetite Shard": 250 }, "id": 77319, "vendor": "Scholar Glenna" },
-        { "name": "Assaulter's Woven Band", "type": "Ring", "cost": { "Magnetite Shard": 250 }, "id": 78002, "vendor": "Scholar Glenna" },
-        { "name": "Assaulter's Besieger Ring", "type": "Ring", "cost": { "Magnetite Shard": 250 }, "id": 78907, "vendor": "Scholar Glenna" },
-        { "name": "Defender's Energized Loop", "type": "Ring", "cost": { "Magnetite Shard": 250 }, "id": 77390, "vendor": "Scholar Glenna" },
-        { "name": "Defender's Woven Band", "type": "Ring", "cost": { "Magnetite Shard": 250 }, "id": 77910, "vendor": "Scholar Glenna" },
-        { "name": "Defender's Besieger Ring", "type": "Ring", "cost": { "Magnetite Shard": 250 }, "id": 78817, "vendor": "Scholar Glenna" },
-        { "name": "Malicious Energized Loop", "type": "Ring", "cost": { "Magnetite Shard": 250 }, "id": 77272, "vendor": "Scholar Glenna" },
-        { "name": "Malicious Woven Band", "type": "Ring", "cost": { "Magnetite Shard": 250 }, "id": 77854, "vendor": "Scholar Glenna" },
-        { "name": "Malicious Besieger Ring", "type": "Ring", "cost": { "Magnetite Shard": 250 }, "id": 78855, "vendor": "Scholar Glenna" },
-        { "name": "Healer's Energized Loop", "type": "Ring", "cost": { "Magnetite Shard": 250 }, "id": 77376, "vendor": "Scholar Glenna" },
-        { "name": "Healer's Woven Band", "type": "Ring", "cost": { "Magnetite Shard": 250 }, "id": 77993, "vendor": "Scholar Glenna" },
-        { "name": "Healer's Besieger Ring", "type": "Ring", "cost": { "Magnetite Shard": 250 }, "id": 78966, "vendor": "Scholar Glenna" },
-        { "name": "Blood Ruby Band", "type": "Ring", "cost": { "Blood Ruby": 100, "Unbound Magic": 2000 }, "id": 79124, "vendor": "Scholar Rakka" },
-        { "name": "Black Ice Band", "type": "Ring", "cost": { "Fresh Winterberry": 200, "Unbound Magic": 2000 }, "id": 79712, "vendor": "Slooshoo" }
+        {
+            "name": "Assaulter's Talisman of Manton",
+            "type": "Amulet",
+            "id": 77410,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Defender's Talisman of Holt",
+            "type": "Amulet",
+            "id": 77412,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Malicious Talisman of Irwyn",
+            "type": "Amulet",
+            "id": 77380,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Healer's Talisman of Garr",
+            "type": "Amulet",
+            "id": 77338,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Blood Ruby Pendant",
+            "type": "Amulet",
+            "id": 79269,
+            "vendor": "Scholar Rakka",
+            "cost": { "Blood Ruby": 125, "Unbound Magic": 3000 }
+        },
+        {
+            "name": "Jade Pendant",
+            "type": "Amulet",
+            "id": 80241,
+            "vendor": "Quartermaster Hitchens",
+            "cost": { "Jade Shard": 125, "Unbound Magic": 3000 }
+        },
+        {
+            "name": "Fire Orchid Garland",
+            "type": "Amulet",
+            "id": 81169,
+            "vendor": "Supplymaster Hanjo",
+            "cost": { "Fire Orchid Blossom": 125, "Unbound Magic": 3000 }
+        },
+        {
+            "name": "Coral Choker",
+            "type": "Amulet",
+            "id": 81658,
+            "vendor": "Provisioner Anlana",
+            "cost": { "Orrian Pearl": 125 }
+        },
+        {
+            "name": "Scion-Spike Amulet",
+            "type": "Amulet",
+            "id": 90355,
+            "vendor": "Mist Warden Quartermaster",
+            "cost": { "Mistborn Mote": 125, "Volatile Magic": 3000 }
+        },
+        {
+            "name": "Asgeir's Amulet",
+            "type": "Amulet",
+            "id": 92215,
+            "vendor": "Bright Shore",
+            "cost": { "Eternal Ice Shard": 375, "Karma": 56000 }
+        },
+        {
+            "name": "Mist Pendant",
+            "type": "Amulet",
+            "id": 79980,
+            "vendor": "BUY-2046 PFR",
+            "cost": { "Integrated Fractal Matrix": 2, "Pristine Fractal Relic": 100 }
+        },
+        {
+            "name": "Spectral Talisman",
+            "type": "Accessory",
+            "id": 77422,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Zane's Assaulter Memento",
+            "type": "Accessory",
+            "id": 77939,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Assaulter's Pointed Keep Fragment",
+            "type": "Accessory",
+            "id": 78829,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Spectral Ward",
+            "type": "Accessory",
+            "id": 77323,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Berg's Defender Token",
+            "type": "Accessory",
+            "id": 77988,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Defender's Hardened Keep Fragment",
+            "type": "Accessory",
+            "id": 78915,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Spectral Juju",
+            "type": "Accessory",
+            "id": 77413,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Narella's Malicious Bauble",
+            "type": "Accessory",
+            "id": 77958,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Malicious Jagged Keep Fragment",
+            "type": "Accessory",
+            "id": 78863,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Spectral Balm",
+            "type": "Accessory",
+            "id": 77448,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Healer's Pact Badge",
+            "type": "Accessory",
+            "id": 77986,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Healer's Rounded Keep Fragment",
+            "type": "Accessory",
+            "id": 78878,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Sparking Petrified Wood",
+            "type": "Accessory",
+            "id": 79444,
+            "vendor": "Scholar Surra",
+            "cost": { "Petrified Wood": 150, "Unbound Magic": 4000 }
+        },
+        {
+            "name": "Black Ice Earring",
+            "type": "Accessory",
+            "id": 79745,
+            "vendor": "Slooshoo",
+            "cost": { "Fresh Winterberry": 300, "Unbound Magic": 4000 }
+        },
+        {
+            "name": "Multifaceted Difluorite Earrings",
+            "type": "Accessory",
+            "id": 86978,
+            "vendor": "Ethall",
+            "cost": { "Difluorite Crystal": 150, "Volatile Magic": 4000 }
+        },
+        {
+            "name": "Mists-Charged Treasure",
+            "type": "Accessory",
+            "id": 90763,
+            "vendor": "Olmakhan Quartermaster",
+            "cost": { "Mistborn Mote": 150, "Volatile Magic": 4000 }
+        },
+        {
+            "name": "Asgeir's Talisman",
+            "type": "Accessory",
+            "id": 92706,
+            "vendor": "Humble Stone, Kjep Corrson",
+            "cost": { "Eternal Ice Shard": 375, "Karma": 56000 }
+        },
+        {
+            "name": "Mist Talisman",
+            "type": "Accessory",
+            "id": 80002,
+            "vendor": "BUY-2046 PFR",
+            "cost": { "Integrated Fractal Matrix": 2, "Pristine Fractal Relic": 100 }
+        },
+        {
+            "name": "Assaulter's Energized Loop",
+            "type": "Ring",
+            "id": 77319,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Assaulter's Woven Band",
+            "type": "Ring",
+            "id": 78002,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Assaulter's Besieger Ring",
+            "type": "Ring",
+            "id": 78907,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Defender's Energized Loop",
+            "type": "Ring",
+            "id": 77390,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Defender's Woven Band",
+            "type": "Ring",
+            "id": 77910,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Defender's Besieger Ring",
+            "type": "Ring",
+            "id": 78817,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Malicious Energized Loop",
+            "type": "Ring",
+            "id": 77272,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Malicious Woven Band",
+            "type": "Ring",
+            "id": 77854,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Malicious Besieger Ring",
+            "type": "Ring",
+            "id": 78855,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Healer's Energized Loop",
+            "type": "Ring",
+            "id": 77376,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Healer's Woven Band",
+            "type": "Ring",
+            "id": 77993,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Healer's Besieger Ring",
+            "type": "Ring",
+            "id": 78966,
+            "vendor": "Scholar Glenna",
+            "cost": { "Magnetite Shard": 250 }
+        },
+        {
+            "name": "Blood Ruby Band",
+            "type": "Ring",
+            "id": 79124,
+            "vendor": "Scholar Rakka",
+            "cost": { "Blood Ruby": 100, "Unbound Magic": 2000 }
+        },
+        {
+            "name": "Black Ice Band",
+            "type": "Ring",
+            "id": 79712,
+            "vendor": "Slooshoo",
+            "cost": { "Fresh Winterberry": 200, "Unbound Magic": 2000 }
+        },
+        {
+            "name": "Gilded Orchid Band",
+            "type": "Ring",
+            "id": 81024,
+            "vendor": "Supplymaster Hanjo",
+            "cost": { "Fire Orchid Blossom": 100, "Unbound Magic": 2000 }
+        },
+        {
+            "name": "Difluorite Band",
+            "type": "Ring",
+            "id": 86974,
+            "vendor": "Ethall",
+            "cost": { "Difluorite Crystal": 100, "Volatile Magic": 2000 }
+        },
+        {
+            "name": "Mistborn Band",
+            "type": "Ring",
+            "id": 90369,
+            "vendor": "Crystal Bloom Quartermaster",
+            "cost": { "Mistborn Mote": 100, "Volatile Magic": 2000 }
+        },
+        {
+            "name": "Mist Band (Infused)",
+            "type": "Ring",
+            "id": 80058,
+            "vendor": "BUY-2046 PFR",
+            "cost": { "Integrated Fractal Matrix": 2, "Pristine Fractal Relic": 100 }
+        }
     ]
 }
