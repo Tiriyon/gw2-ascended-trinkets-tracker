@@ -30,14 +30,14 @@
     <div id="recommended-items-table"></div> 
     <script>
         let wallet = {};
-        let inventory = {};
+        let sharedInventory = {};
     
         async function fetchWalletInfo() {
             const apiKey = document.getElementById("api-token").value;
             const walletResponse = await fetch(`https://api.guildwars2.com/v2/account/wallet?access_token=${apiKey}`);
             wallet = await walletResponse.json();
             const inventoryResponse = await fetch(`https://api.guildwars2.com/v2/account/inventory?access_token=${apiKey}`);
-            inventory = await inventoryResponse.json();
+            sharedInventory = await inventoryResponse.json();
     
             loadItems();
         }
@@ -88,8 +88,8 @@
                     if (currencyInfo) {
                         costString += `${amount} ${currency}<br>`;
                         const walletEntry = wallet.find(w => w.id === currencyInfo.id);
-                        const inventoryEntry = inventory.find(w => w.id === currencyInfo.id);
-                        const totalAmount = (walletEntry ? walletEntry.value : 0) + (inventoryEntry ? inventoryEntry.count : 0);
+                        const inventoryCount = sharedInventory.filter(i => i && i.id === currencyInfo.id).reduce((acc, i) => acc + i.count, 0);
+                        const totalAmount = (walletEntry ? walletEntry.value : 0) + inventoryCount;
                         walletAmount += `${totalAmount} ${currency}<br>`;
                         if (totalAmount < amount) {
                             canAfford = false;
@@ -146,8 +146,8 @@
                         if (currencyInfo) {
                             costString += `${amount} ${currency}<br>`;
                             const walletEntry = wallet.find(w => w.id === currencyInfo.id);
-                            const inventoryEntry = inventory.find(w => w.id === currencyInfo.id);
-                            const totalAmount = (walletEntry ? walletEntry.value : 0) + (inventoryEntry ? inventoryEntry.count : 0);
+                            const inventoryCount = sharedInventory.filter(i => i && i.id === currencyInfo.id).reduce((acc, i) => acc + i.count, 0);
+                            const totalAmount = (walletEntry ? walletEntry.value : 0) + inventoryCount;
                             walletAmount += `${totalAmount} ${currency}<br>`;
                         }
                     }
@@ -168,8 +168,6 @@
             document.getElementById("recommended-items-table").innerHTML = recommendedTableHtml;
         }
     </script>
-
-
 </body>
 </html>
 
