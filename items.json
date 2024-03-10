@@ -1,8 +1,14 @@
 {
     "currencies": [
         { "name": "Magnetite Shard", "id": 28 },
-        { "name": "Blood Ruby", "id": 79280 },
         { "name": "Unbound Magic", "id": 32 },
+        { "name": "Volatile Magic", "id": 45 },
+        { "name": "Karma", "id": 2 },
+        { "name": "Pristine Fractal Relic", "id": 69862 },
+        { "name": "Integrated Fractal Matrix", "id": 79230 }
+    ],
+    "inventoryItems": [
+        { "name": "Blood Ruby", "id": 79280 },
         { "name": "Petrified Wood", "id": 79469 },
         { "name": "Fresh Winterberry", "id": 79899 },
         { "name": "Jade Shard", "id": 80332 },
@@ -10,10 +16,7 @@
         { "name": "Orrian Pearl", "id": 81706 },
         { "name": "Difluorite Crystal", "id": 86977 },
         { "name": "Mistborn Mote", "id": 90783 },
-        { "name": "Volatile Magic", "id": 45 },
-        { "name": "Karma", "id": 2 },
-        { "name": "Pristine Fractal Relic", "id": 69862 },
-        { "name": "Integrated Fractal Matrix", "id": 79230 }
+        { "name": "Eternal Ice Shard", "id": 92215 }
     ],
     "items": [
         {
