@@ -87,11 +87,13 @@
                     const currencyInfo = data.currencies.find(c => c.name === currency) || data.inventoryItems.find(c => c.name === currency);
                     if (currencyInfo) {
                         costString += `${amount} ${currency}<br>`;
-                        const walletEntry = wallet.find(w => w.id === currencyInfo.id) || inventory.find(w => w.id === currencyInfo.id);
-                        walletAmount += `${walletEntry ? walletEntry.value : 0} ${currency}<br>`;
-                        if (!walletEntry || walletEntry.value < amount) {
+                        const walletEntry = wallet.find(w => w.id === currencyInfo.id);
+                        const inventoryEntry = inventory.find(w => w.id === currencyInfo.id);
+                        const totalAmount = (walletEntry ? walletEntry.value : 0) + (inventoryEntry ? inventoryEntry.count : 0);
+                        walletAmount += `${totalAmount} ${currency}<br>`;
+                        if (totalAmount < amount) {
                             canAfford = false;
-                            affordability += walletEntry ? walletEntry.value / amount : 0;
+                            affordability += totalAmount / amount;
                         }
                     }
                 }
@@ -143,8 +145,10 @@
                         const currencyInfo = data.currencies.find(c => c.name === currency) || data.inventoryItems.find(c => c.name === currency);
                         if (currencyInfo) {
                             costString += `${amount} ${currency}<br>`;
-                            const walletEntry = wallet.find(w => w.id === currencyInfo.id) || inventory.find(w => w.id === currencyInfo.id);
-                            walletAmount += `${walletEntry ? walletEntry.value : 0} ${currency}<br>`;
+                            const walletEntry = wallet.find(w => w.id === currencyInfo.id);
+                            const inventoryEntry = inventory.find(w => w.id === currencyInfo.id);
+                            const totalAmount = (walletEntry ? walletEntry.value : 0) + (inventoryEntry ? inventoryEntry.count : 0);
+                            walletAmount += `${totalAmount} ${currency}<br>`;
                         }
                     }
     
@@ -164,6 +168,7 @@
             document.getElementById("recommended-items-table").innerHTML = recommendedTableHtml;
         }
     </script>
+
 
 </body>
 </html>
