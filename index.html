@@ -40,6 +40,7 @@
         }
 
 
+
         async function loadItems() {
             const response = await fetch("items.json");
             const data = await response.json();
@@ -61,6 +62,21 @@
                 'Amulet': []
             };
         
+            // Collect all item IDs
+            const itemIds = data.items.map(item => item.id).filter(id => id !== undefined);
+        
+            // Fetch item details in batches
+            const batchSize = 200; // API limit
+            const itemDetails = {};
+            for (let i = 0; i < itemIds.length; i += batchSize) {
+                const batchIds = itemIds.slice(i, i + batchSize);
+                const batchResponse = await fetch(`https://api.guildwars2.com/v2/items?ids=${batchIds.join(',')}`);
+                const batchData = await batchResponse.json();
+                batchData.forEach(item => {
+                    itemDetails[item.id] = item;
+                });
+            }
+        
             for (const item of data.items) {
                 let costString = '';
                 let walletAmount = '';
@@ -79,13 +95,9 @@
                     }
                 }
         
-                let iconUrl = '';
-                let wikiUrl = `https://wiki.guildwars2.com/wiki/Special:Search?search=${encodeURIComponent(item.name)}`;
-                if (item.id) {
-                    const itemResponse = await fetch(`https://api.guildwars2.com/v2/items/${item.id}`);
-                    const itemData = await itemResponse.json();
-                    iconUrl = itemData.icon;
-                }
+                const itemDetail = itemDetails[item.id];
+                const iconUrl = itemDetail ? itemDetail.icon : '';
+                const wikiUrl = `https://wiki.guildwars2.com/wiki/Special:Search?search=${encodeURIComponent(item.name)}`;
         
                 tableHtml += `
                     <tr>
@@ -149,43 +161,7 @@
         
             recommendedTableHtml += '</table>';
             document.getElementById("recommended-items-table").innerHTML = recommendedTableHtml;
-        }        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
-        
+        }
         
     </script>
 </body>

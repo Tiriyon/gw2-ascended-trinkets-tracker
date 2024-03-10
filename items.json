@@ -1,6 +1,6 @@
 {
     "currencies": [
-        { "name": "magnetite shard", "id": 28 },
+        { "name": "Magnetite Shard", "id": 28 },
         { "name": "Blood Ruby", "id": 79280 },
         { "name": "Unbound Magic", "id": 32 },
         { "name": "Petrified Wood", "id": 79469 },
@@ -12,7 +12,7 @@
         { "name": "Mistborn Mote", "id": 90783 },
         { "name": "Volatile Magic", "id": 45 },
         { "name": "Karma", "id": 2 },
-        { "name": "Pristine Fractal Relic", "id": 39078 },
+        { "name": "Pristine Fractal Relic", "id": 69862 },
         { "name": "Integrated Fractal Matrix", "id": 79230 }
     ],
     "items": [
