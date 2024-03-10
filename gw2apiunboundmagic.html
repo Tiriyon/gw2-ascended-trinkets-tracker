@@ -39,44 +39,92 @@
         }
 
         async function loadItems() {
-            const response = await fetch("items.json");
-            const data = await response.json();
+          const response = await fetch("items.json");
+          const data = await response.json();
 
-            let tableHtml = `
-                <table>
-                    <tr>
-                        <th>Item</th>
-                        <th>Type</th>
-                        <th>Cost</th>
-                        <th>Wallet</th>
-                    </tr>
-            `;
+          let tableHtml = `
+              <table>
+                  <tr>
+                      <th>Item</th>
+                      <th>Type</th>
+                      <th>Cost</th>
+                      <th>Wallet</th>
+                      <th>Wiki Link</th>
+                  </tr>
+          `;
 
-            for (const item of data.items) {
-                let costString = '';
-                let walletAmount = '';
-                for (const [currency, amount] of Object.entries(item.cost)) {
-                    const currencyInfo = data.currencies.find(c => c.name === currency);
-                    if (currencyInfo) {
-                        costString += `${amount} ${currency}<br>`;
-                        const walletEntry = wallet.find(w => w.id === currencyInfo.id);
-                        walletAmount += `${walletEntry ? walletEntry.value : 0} ${currency}<br>`;
-                    }
-                }
+          for (const item of data.items) {
+              let costString = '';
+              let walletAmount = '';
+              for (const [currency, amount] of Object.entries(item.cost)) {
+                  const currencyInfo = data.currencies.find(c => c.name === currency);
+                  if (currencyInfo) {
+                      costString += `${amount} ${currency}<br>`;
+                      const walletEntry = wallet.find(w => w.id === currencyInfo.id);
+                      walletAmount += `${walletEntry ? walletEntry.value : 0} ${currency}<br>`;
+                  }
+              }
 
-                tableHtml += `
-                    <tr>
-                        <td>${item.name}</td>
-                        <td>${item.type}</td>
-                        <td>${costString}</td>
-                        <td>${walletAmount}</td>
-                    </tr>
-                `;
-            }
+              let iconUrl = '';
+              let wikiUrl = `https://wiki.guildwars2.com/wiki/Special:Search?search=${encodeURIComponent(item.name)}`;
+              if (item.id) {
+                  const itemResponse = await fetch(`https://api.guildwars2.com/v2/items/${item.id}`);
+                  const itemData = await itemResponse.json();
+                  iconUrl = itemData.icon;
+              }
 
-            tableHtml += '</table>';
-            document.getElementById("items-table").innerHTML = tableHtml;
-        }
+              tableHtml += `
+                  <tr>
+                      <td><img src="${iconUrl}" alt="${item.name} icon" width="32" height="32" style="vertical-align: middle;"> ${item.name}</td>
+                      <td>${item.type}</td>
+                      <td>${costString}</td>
+                      <td>${walletAmount}</td>
+                      <td><a href="${wikiUrl}" target="_blank">Wiki</a></td>
+                  </tr>
+              `;
+          }
+
+    tableHtml += '</table>';
+    document.getElementById("items-table").innerHTML = tableHtml;
+}
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
     </script>
 </body>
 </html>
